@@ -5,7 +5,6 @@ vim.pack.add({
   require 'plugins.harpoon',
   require 'plugins.which-key',
   require 'plugins.scrollbar',
-  require 'plugins.gitsigns',
 
   -- colorscheme
   require 'plugins.tokyonight',
