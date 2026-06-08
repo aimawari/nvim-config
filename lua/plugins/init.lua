@@ -1,6 +1,6 @@
 -- [[ Plugins ]]
 vim.pack.add({
-  require 'plugins.plenery',
+  require 'plugins.plenary',
 
   require 'plugins.harpoon',
   require 'plugins.which-key',

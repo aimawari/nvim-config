@@ -50,13 +50,6 @@ return {
         pyright = {},
       }
 
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        'stylua',
-        'clangd',
-        'pyright',
-      })
-
       for name, server in pairs(servers) do
         vim.lsp.config(name, server)
         vim.lsp.enable(name)

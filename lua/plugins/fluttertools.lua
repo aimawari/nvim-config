@@ -4,7 +4,30 @@ return {
     setup = function()
       vim.api.nvim_set_hl(0, 'FlutterWidgetGuides', { fg = '#303030' })
 
-      vim.keymap.set('n', '<leader>fl', '<cmd>lua require("telescope").extensions.flutter.commands()<cr>', { desc = '[F][L]utter commands' })
+      vim.keymap.set('n', '<leader>fl', function()
+        local pick = require 'mini.pick'
+
+        local flutter_cmds = {
+          'FlutterRun',
+          'FlutterReload',
+          'FlutterRestart',
+          'FlutterDevices',
+          'FlutterEmulators',
+          'FlutterQuit',
+          'FlutterAttach',
+          'FlutterDetach',
+          'FlutterLogToggle',
+          'FlutterDevTools',
+        }
+
+        pick.start {
+          source = {
+            items = flutter_cmds,
+            name = 'Flutter Commands',
+            choose = function(item) vim.cmd(item) end,
+          },
+        }
+      end, { desc = '[F][L]utter commands' })
 
       require('flutter-tools').setup {
         fvm = false,
@@ -42,15 +65,15 @@ return {
             virtual_text_str = '■', -- the virtual text character to highlight
           },
           settings = {
-            showtodos = true,
-            completefunctioncalls = true,
-            analysisexcludedfolders = {
-              vim.fn.expand '$Home/.pub-cache',
-              -- vim.fn.expand("$HOME/.asdf/installs/flutter"),
+            showTodos = true,
+            completeFunctionCalls = true,
+            analysisExcludedFolders = {
+              vim.fn.expand '~/.pub-cache',
+              -- vim.fn.expand("~/.asdf/installs/flutter"),
             },
-            renamefileswithclasses = 'prompt',
-            updateimportsonrename = true,
-            enablesnippets = false,
+            renameFilesWithClasses = 'prompt',
+            updateImportsOnRename = true,
+            enableSnippets = false,
           },
         },
         debugger = {

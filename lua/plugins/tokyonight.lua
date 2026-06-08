@@ -1,6 +1,12 @@
 return {
   src = 'https://github.com/folke/tokyonight.nvim',
   data = {
-    setup = function() vim.cmd.colorscheme 'tokyonight-night' end,
+    setup = function()
+      require('tokyonight').setup {
+        transparent = true,
+      }
+
+      vim.cmd.colorscheme 'tokyonight-storm'
+    end,
   },
 }
