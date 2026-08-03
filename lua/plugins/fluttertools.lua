@@ -5,6 +5,11 @@ return {
       vim.api.nvim_set_hl(0, 'FlutterWidgetGuides', { fg = '#303030' })
 
       vim.keymap.set('n', '<leader>fl', function()
+        -- flutter-tools only registers its :Flutter* commands on entering a
+        -- *.dart/pubspec.yaml buffer; fake that event so the commands exist
+        -- even when this is invoked from netrw or another non-dart buffer.
+        vim.api.nvim_exec_autocmds('BufEnter', { pattern = 'pubspec.yaml' })
+
         local pick = require 'mini.pick'
 
         local flutter_cmds = {
@@ -40,13 +45,7 @@ return {
           priority = 10,
         },
         dev_log = {
-          enabled = true,
-          notify_errors = false,
-          open_cmd = 'botright 15split',
-          filter = function(log_line)
-            if log_line:find 'ImpellerValidationBreak' then return false end
-            return true
-          end,
+          enabled = false,
         },
         decorations = {
           statusline = {
@@ -56,14 +55,6 @@ return {
           },
         },
         lsp = {
-          color = { -- show the derived colours for dart variables
-            enabled = false, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
-            background = false, -- highlight the background
-            background_color = nil, -- required, when background is transparent (i.e. background_color = { r = 19, g = 17, b = 24},)
-            foreground = false, -- highlight the foreground
-            virtual_text = true, -- show the highlight using virtual text
-            virtual_text_str = '■', -- the virtual text character to highlight
-          },
           settings = {
             showTodos = true,
             completeFunctionCalls = true,

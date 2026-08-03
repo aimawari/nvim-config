@@ -7,7 +7,14 @@ return {
       require('mini.pick').setup()
       require('mini.pairs').setup()
       require('mini.diff').setup()
-      require('mini.notify').setup()
+      require('mini.notify').setup {
+        content = {
+          sort = function(notif_arr)
+            local filtered = vim.tbl_filter(function(notif) return not (notif.data.source == 'lsp_progress' and notif.data.client_name == 'dartls') end, notif_arr)
+            return MiniNotify.default_sort(filtered)
+          end,
+        },
+      }
       require('mini.indentscope').setup()
       require('mini.statusline').setup()
       require('mini.hipatterns').setup {
