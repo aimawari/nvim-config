@@ -17,7 +17,6 @@ return {
           { '<leader>t', group = '[T]oggle' },
           { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
           { '<leader>n', group = 'Harpoo[N]', mode = { 'n', 'v' } },
-          { '<leader>g', group = 'Fu[G]itive', mode = { 'n', 'v' } },
         },
       }
     end,

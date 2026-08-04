@@ -48,6 +48,8 @@ return {
       local servers = {
         clangd = {},
         pyright = {},
+        kotlin_language_server = {},
+        sourcekit = {},
       }
 
       for name, server in pairs(servers) do

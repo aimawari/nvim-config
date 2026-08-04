@@ -14,11 +14,13 @@ return {
         'dockerfile',
         'html',
         'json',
+        'kotlin',
         'lua',
         'luadoc',
         'make',
         'markdown',
         'markdown_inline',
+        'python',
         'query',
         'regex',
         'rust',
@@ -28,6 +30,7 @@ return {
         'tsx',
         'vim',
         'vimdoc',
+        'yaml',
       }
 
       require('nvim-treesitter').install(filetypes)

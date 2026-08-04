@@ -6,7 +6,14 @@ return {
       require('mini.completion').setup()
       require('mini.pick').setup()
       require('mini.pairs').setup()
-      require('mini.diff').setup()
+      require('mini.surround').setup()
+      require('mini.ai').setup()
+      require('mini.diff').setup {
+        mappings = {
+          apply = '<leader>hs',
+          reset = '<leader>hr',
+        },
+      }
       require('mini.notify').setup {
         content = {
           sort = function(notif_arr)
@@ -42,6 +49,8 @@ return {
       keymap_set('n', '<leader>s.', function() MiniPick.builtin.oldfiles() end, { desc = '[S]earch Recent Files' })
       keymap_set('n', '<leader>sc', function() MiniPick.builtin.commands() end, { desc = '[S]earch [C]ommands' })
       keymap_set('n', '<leader><leader>', function() MiniPick.builtin.buffers() end, { desc = 'Find existing buffers' })
+
+      keymap_set('n', '<leader>hp', function() MiniDiff.toggle_overlay(0) end, { desc = 'Toggle hunk overlay (word diff)' })
 
       autocmd('LspAttach', {
         group = augroup('minipick-lsp-attach', { clear = true }),

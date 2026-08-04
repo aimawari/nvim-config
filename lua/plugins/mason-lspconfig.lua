@@ -3,7 +3,7 @@ return {
   data = {
     setup = function()
       require('mason-lspconfig').setup {
-        ensure_installed = { 'clangd', 'pyright', 'lua_ls' },
+        ensure_installed = { 'clangd', 'pyright', 'lua_ls', 'kotlin_language_server' },
       }
     end,
   },
